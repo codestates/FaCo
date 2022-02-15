@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('boards', {
+    await queryInterface.createTable('posts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -23,9 +23,6 @@ module.exports = {
       location: {
         type: Sequelize.STRING
       },
-      like: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         type: Sequelize.STRING
       },
@@ -40,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('boards');
+    await queryInterface.dropTable('posts');
   }
 };
