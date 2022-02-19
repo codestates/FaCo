@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     body: DataTypes.STRING,
     location: DataTypes.STRING,
-    createdAt: DataTypes.STRING
+    createdAt: DataTypes.STRING,
+    updatedAt: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'post',
