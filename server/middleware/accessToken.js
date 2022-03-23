@@ -1,4 +1,5 @@
 const userDB = require("../data/user");
+// const postDB = require("../data/post");
 const jwt = require("jsonwebtoken");
 
 async function accessToken(req, res, next) {
@@ -28,7 +29,13 @@ async function accessToken(req, res, next) {
     if (!user) {
       return new errorMessage("일치하는 유저가 존재하지").respond();
     }
+
+    // const post = await postDB.findPostById(decode.postId);
+    // if (!post) {
+    //   return new errorMessage("일치하는 포스트가 존재하지").respond();
+    // }
     req.userId = user.id;
+    // req.postId = post.id;
     next();
   });
 }

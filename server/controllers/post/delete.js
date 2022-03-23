@@ -2,8 +2,7 @@ const postDB = require("../../data/post")
 
 async function unpost(req, res) {
   try {
-    const postId = req.postId;
-
+    const postId = req.body.postId;
     postDB.deletePost(postId);
 
     return res.status(201).json({ message: "게시글이 삭제되었습니다." })
