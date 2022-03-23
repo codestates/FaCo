@@ -8,12 +8,16 @@ async function postInfo(userId) {
   })
 }
 
-async function allPostInfo(postId) {
-  return post.findAll({
+async function findPostById(postId) {
+  return post.findOne({
     where: {
-      postId: postId
+      id: postId,
     }
-  });
+  })
+}
+
+async function allPostInfo() {
+  return post.findAll({});
 }
 
 async function createPost(QR, userId, title, body, location, url) {
@@ -42,6 +46,7 @@ async function modifyPost(title, body, location, url) {
 
 module.exports = {
   postInfo,
+  findPostById,
   allPostInfo,
   createPost,
   deletePost,

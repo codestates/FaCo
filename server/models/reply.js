@@ -18,8 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.STRING,
     postId: DataTypes.STRING,
     postId: DataTypes.STRING,
-    createdAt: DataTypes.STRING,
-    updatedAt: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'reply',

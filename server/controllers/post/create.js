@@ -2,7 +2,8 @@ const postDB = require("../../data/post");
 
 async function post(req, res) {
   try {
-    const { QR, title, body, location, url, email } = req.body;
+    console.log(req);
+    const { QR, title, body, location, url } = req.body;
     const userId = req.userId;
 
     const createPostData = await postDB.createPost(
