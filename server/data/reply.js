@@ -8,9 +8,11 @@ async function replyInfo(userId) {
   })
 }
 
-async function createReply(body) {
+async function createReply(body, userId, postId) {
   return reply.create({
     body,
+    userId,
+    postId,
   })
 }
 
@@ -18,10 +20,10 @@ async function deleteReply(replyId) {
   return reply.destroy({ where: { id: replyId }})
 }
 
-async function modifyReply(body) {
-  return reply.update({
-    body: body,
-  })
+async function modifyReply(body, replyId) {
+  // console.log(body)
+  // console.log(replyId)
+  return reply.update({ body }, { where: { id: replyId } })
 }
 
 module.exports = {

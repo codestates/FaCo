@@ -1,10 +1,11 @@
 const router = require("express").Router();
+const { accessToken } = require("../middleware/accessToken");
 const { replyController } = require("../controllers");
 
-router.post("/reply", replyController.create.reply);
+router.post("/reply", accessToken, replyController.create.reply);
   
-router.delete("/", replyController.delete.unreply);
+router.delete("/", accessToken, replyController.delete.unreply);
 
-router.patch("/", replyController.modify.modify);
+router.patch("/", accessToken, replyController.modify.modify);
   
 module.exports = router;
