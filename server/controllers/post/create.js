@@ -2,7 +2,6 @@ const postDB = require("../../data/post");
 
 async function post(req, res) {
   try {
-    console.log(req);
     const { QR, title, body, location, url } = req.body;
     const userId = req.userId;
 

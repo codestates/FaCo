@@ -1,5 +1,4 @@
 const userDB = require("../data/user");
-// const postDB = require("../data/post");
 const jwt = require("jsonwebtoken");
 
 async function accessToken(req, res, next) {

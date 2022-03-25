@@ -21,8 +21,6 @@ async function deleteReply(replyId) {
 }
 
 async function modifyReply(body, replyId) {
-  // console.log(body)
-  // console.log(replyId)
   return reply.update({ body }, { where: { id: replyId } })
 }
 
