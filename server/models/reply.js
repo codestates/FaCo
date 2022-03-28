@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     body: DataTypes.STRING,
     userId: DataTypes.STRING,
     postId: DataTypes.STRING,
-    postId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'reply',

@@ -2,14 +2,14 @@ const likeDB = require("../../data/like")
 
 async function likePost(req, res) {
   try {
-    const { id: userId } = req.body.user;
-    const { id: postId } = req.params;
+    const { postId } = req.body;
+    const userId = req.userId;
 
-    if (await likeDB.likeInfo(userId, postId)) {
-      likeDB.deleteLike(likeId);
-      return res.status(409).json({ message: "좋아요를 취소합니다." })
+    const likeData = await likeDB.likeInfo(userId, postId);
+    if (likeData){
+      likeDB.deleteLike(likeData.id);
+    return res.status(409).json({message:'좋아요를 취소합니다.'})
     }
-
     const createLikeData = await likeDB.createLike(
       userId,
       postId,

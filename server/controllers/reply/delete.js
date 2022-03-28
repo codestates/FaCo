@@ -2,7 +2,7 @@ const replyDB = require("../../data/reply")
 
 async function unreply(req, res) {
   try {
-    const replyId = req.replyId;
+    const { replyId } = req.body;
 
     replyDB.deleteReply(replyId);
 
