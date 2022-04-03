@@ -6,7 +6,6 @@ async function allPost(req, res) {
   if(!postInfo) {
     return res.status(400).json({ message: "등록된 글이 없습니다." })
   }
-
   return res.status(200).json(postInfo);
 }
 
