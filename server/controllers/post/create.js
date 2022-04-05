@@ -1,20 +1,28 @@
 const postDB = require("../../data/post");
+const urlDB = require("../../data/url");
+
 
 async function post(req, res) {
   try {
-    const { QR, title, body, location, url } = req.body;
+    const { QR, title, body, location} = req.body.postInfo;
+    const urls = JSON.parse(req.body.postInfo.urls);
     const userId = req.userId;
-
     const createPostData = await postDB.createPost(
       QR,
       userId,
       title,
       body,
-      location,
-      url,
+      location
     );
     const postId = createPostData.id;
-    const result = { postId, QR, userId, title, body, location, url };
+    for(let i=0; i<urls.length;i++){
+      await urlDB.createUrl(
+        urls[i],
+        postId
+      )
+    }
+
+    const result = { postId, QR, userId, title, body, location, urls };
 
     return res.status(201).json({ data: result, message: "게시글이 작성되었습니다." })
   } catch (err) {

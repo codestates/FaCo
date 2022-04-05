@@ -1,3 +1,4 @@
+const db = require('../models');
 const { post } = require('../models');
 
 async function postInfo(userId) {
@@ -17,17 +18,20 @@ async function findPostById(postId) {
 }
 
 async function allPostInfo() {
-  return post.findAll({});
+  return post.findAll({
+    include:[
+      {model: db['url']}
+    ]
+  });
 }
 
-async function createPost(QR, userId, title, body, location, url) {
+async function createPost(QR, userId, title, body, location) {
   return post.create({
     QR,
     userId,
     title,
     body,
     location,
-    url,
   })
 }
 
@@ -35,7 +39,7 @@ async function deletePost(postId) {
   return post.destroy({ where: { id: postId }})
 }
 
-async function modifyPost(title, body, location, url, postId) {
+async function modifyPost(title, body, location, postId) {
   if (title) {post.update({
     title,
   }, {where: { id: postId } })
@@ -46,10 +50,6 @@ async function modifyPost(title, body, location, url, postId) {
   }
   if (location) {post.update({
     location,
-  }, {where: { id: postId } })
-  }
-  if (url) {post.update({
-    url,
   }, {where: { id: postId } })
   }
 }
