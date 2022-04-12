@@ -4,8 +4,7 @@ const urlDB = require("../../data/url");
 
 async function post(req, res) {
   try {
-    const { QR, title, body, location} = req.body.postInfo;
-    const urls = JSON.parse(req.body.postInfo.urls);
+    const { QR, title, body, location } = req.body.postInfo;
     const userId = req.userId;
     const createPostData = await postDB.createPost(
       QR,
@@ -15,6 +14,12 @@ async function post(req, res) {
       location
     );
     const postId = createPostData.id;
+    
+    if (typeof "urls") {
+      urls = JSON.parse(req.body.postInfo.urls);
+    } else {
+      urls = req.body.postInfo.urls;
+    }
     for(let i=0; i<urls.length;i++){
       await urlDB.createUrl(
         urls[i],
