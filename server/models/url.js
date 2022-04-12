@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   url.init({
+    name: DataTypes.STRING,
     url: DataTypes.STRING,
   }, {
     sequelize,

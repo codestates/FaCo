@@ -6,10 +6,10 @@ async function modify(req, res) {
   try {
     const { title, body, location, postId } = req.body.postInfo;
     
-    if (!req.body.postInfo.urls) {
-      urls = req.body.postInfo.urls;
-    } else {
+    if (typeof "urls") {
       urls = JSON.parse(req.body.postInfo.urls);
+    } else {
+      urls = req.body.postInfo.urls;
     }
     postDB.modifyPost(title, body, location, postId);
     urlDB.deleteUrl(postId);
