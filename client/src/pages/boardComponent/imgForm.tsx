@@ -74,9 +74,7 @@ function ImgForm({ images, handleImages }: ImgFormProps) {
   }
 
   function imgHandler() {
-    if (images.length === 5) {
-      return;
-    }
+    if (images.length === 5) return;
 
     const input = document.createElement('input');
     input.setAttribute("type", "file");

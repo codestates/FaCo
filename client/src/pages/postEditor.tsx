@@ -24,7 +24,8 @@ function PostEditor () {
   const boardType = locationState.boardType;
   const key = useSelector((state: RootState) => state.testReducer.key); //dummy
   const state = useSelector((state: RootState) => state.postsReducer[`${boardType}Lts`]); // 추후 렌더링 될때마다 서버에서 받아오는걸로 변경
- 
+  const userState = useSelector((state: RootState) => state.userInfoReducer.userInfo);
+
   const QuillRef = useRef<ReactQuill>();
   const [inputTitle, setInputTitle] = useState("");
   const [isImgEmpty, setIsImgEmpty] = useState(false);
@@ -63,6 +64,7 @@ function PostEditor () {
   );
 
   function handleSubmitBtnClick() {
+    console.log(images)
     if (inputTitle === '') {
       return setIsTitleEmpty(true);
     }
@@ -100,6 +102,28 @@ function PostEditor () {
         img: images
       }
     }
+
+    const postInfo = {
+      postInfo: { 
+        QR: boardType,
+        title: inputTitle,
+        body: delta,
+        location: userState.location,
+        urls: images
+      }
+    };
+
+    axios.post(`${process.env.REACT_APP_API_URL}/post/post`, postInfo, {
+      headers: {
+        Authorization: `Bearer ${userState.accessToken}`,
+          "Content-Type": "application/json",
+          credentials: true
+      }
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.log(err.response.data.message));
     
     // 서버 요청 부분
     if (boardType === 'r') {

@@ -37,10 +37,17 @@ Fashion Coordinator의 약자로 날씨에 따라 가장 인기있는 옷을 추
 ### Back-End
 - 강호균
   - Github: hogyun0126
+<<<<<<< HEAD
+  - DB, Deploy, 로그인, 회원정보 서버 구현
+- 김주형
+  - Github: jhyungkim
+  - API, 게시판 서버 구현
+=======
   - DB, Deploy, 회원정보, 로그인 서버 구현
 - 김주형
   - Github: jhyungkim
   - API, 게시판, 좋아요, 댓글 서버 구현
+>>>>>>> 55283e6de7bc4a427061e8dd8313a4952c90927e
 
 ## 사용한 스택
 ### Front-End
