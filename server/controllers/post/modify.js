@@ -2,15 +2,13 @@ const postDB = require("../../data/post");
 const urlDB = require("../../data/url");
 
 async function modify(req, res) {
-  console.log(req);
   try {
-    const { title, body, location, postId } = req.body.postInfo;
-    
-    if (typeof "urls") {
-      urls = JSON.parse(req.body.postInfo.urls);
-    } else {
-      urls = req.body.postInfo.urls;
-    }
+    const { title, body, location, postId, urls } = req.body.postInfo;
+    // if (typeof "urls") {
+    //   urls = JSON.parse(req.body.postInfo.urls);
+    // } else {
+    //   urls = req.body.postInfo.urls;
+    // }
     postDB.modifyPost(title, body, location, postId);
     urlDB.deleteUrl(postId);
 

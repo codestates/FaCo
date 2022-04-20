@@ -1,5 +1,6 @@
 const { url } = require('../models');
 
+console.log(createUrl.urlLink)
 async function findUrlById(postId) {
   return url.findAll({
     where: {
@@ -17,6 +18,7 @@ async function createUrl(urlLink, postId) {
     url:urlLink,
     post_id:postId,
   })
+  console.log(createUrl.urlLink)
 }
 
 async function deleteUrl(postId) {
