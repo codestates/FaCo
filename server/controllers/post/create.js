@@ -4,7 +4,6 @@ const urlDB = require("../../data/url");
 
 async function post(req, res) {
   try {
-    // console.log(req.body.postInfo)
     const { QR, title, body, location, urls} = req.body.postInfo;
     const userId = req.userId;
     const createPostData = await postDB.createPost(
