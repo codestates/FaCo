@@ -24,9 +24,8 @@ function RBoard() {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/post/r`).then(res => {
-      console.log(res);
-      searchHandler(res.data.data);
-      
+      setLts(lts => res.data.data);
+      console.log(res.data.data)
     }).catch(err => console.log(err));
   }, []);
 

@@ -22,8 +22,8 @@ function QBoard() {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/post/q`).then(res => {
-      console.log(res);
-      searchHandler(res.data.data);
+      console.log(res.data.data);
+      setLts(lts => res.data.data)
     }).catch(err => console.log(err));
 
   }, []);
