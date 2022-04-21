@@ -1,7 +1,6 @@
 import React, { useEffect }  from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-
 import Menu from './pages/menu';
 import Footer from './pages/footer';
 import Home from './pages/home';
@@ -9,9 +8,6 @@ import QBoard from './pages/qBoard';
 import RBoard from './pages/rBoard';
 import PostEditor from './pages/postEditor';
 import MyInfo from './pages/myInfo';
-
-
-// import ReduxTest from './pages/reduxTest';
 import { useDispatch, useSelector } from 'react-redux';
 import { postDummy } from './dummyData/boardDummy';
 import { locationDummy } from './dummyData/location';

@@ -64,7 +64,7 @@ function PostEditor () {
   );
 
   function handleSubmitBtnClick() {
-    console.log(images)
+    // console.log(images)
     if (inputTitle === '') {
       return setIsTitleEmpty(true);
     }

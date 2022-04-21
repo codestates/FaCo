@@ -32,7 +32,7 @@ async function createPost(QR, userId, title, body, location) {
     title,
     body,
     location,
-  })
+  });
 }
 
 async function deletePost(postId) {
