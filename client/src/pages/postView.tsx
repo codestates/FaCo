@@ -23,9 +23,8 @@ function PostView({ post }: PostViewProps) {
   const [comment, setComment] = useState<string[]>([]);
   const [textareaValue, setTextareaValue] = useState('');
 
-  const converter = new QuillDeltaToHtmlConverter(post.body, {});
+  const converter = new QuillDeltaToHtmlConverter(JSON.parse(post.body), {});
   const html = converter.convert();
-  //console.log(post.body)
 
   useEffect(() => {
     async function callback() {

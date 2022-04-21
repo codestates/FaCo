@@ -14,10 +14,14 @@ function RPost({ post, postClickHandler }: RPostProps) {
       {post.img !== null && <img src={post.img[0].url}/>}
     </div>
     <div className='rboard-post-info'>
-      <div><div>{post.location}</div><div>{post.weather}</div></div>
+      <div>
+        <div>{post.location}</div>
+        <div>{post.weather}</div>
+      </div>
       <div className='rboard-post-like'>
         <div className='heart'><AiFillHeart/></div>
         <div>{post.like}</div>
+        <div>{post.writer}</div>
       </div>
     </div>
    </div>

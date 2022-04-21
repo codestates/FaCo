@@ -8,6 +8,7 @@ import { PostType, qBoardLts } from '../modules/posts';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { postDummy } from '../dummyData/boardDummy';
 import PostView from './postView';
+import axios from 'axios';
 
 function QBoard() {
   const state = useSelector((state: RootState) => state.postsReducer.qLts);
@@ -19,10 +20,12 @@ function QBoard() {
   const [isPostClicked, setIspostClicked] = useState(false);
   const [currentPost, setCurrentPost] = useState<PostType>(postDummy.qLts[0]);
 
-  
   useEffect(() => {
-    // 서버에서 새로 받아옴
-    dispatch(qBoardLts(state));
+    axios.get(`${process.env.REACT_APP_API_URL}/post/q`).then(res => {
+      console.log(res);
+      searchHandler(res.data.data);
+    }).catch(err => console.log(err));
+
   }, []);
   
 

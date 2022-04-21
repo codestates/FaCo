@@ -2,17 +2,18 @@ const postDB = require("../../data/post");
 const urlDB = require("../../data/url");
 
 
-async function post(req, res) {
+async function create(req, res) {
   try {
-    const { QR, title, body, location, urls } = req.body.postInfo;
-    const userId = req.userId;
+    const { type, title, weather, location, body, urls } = req.body;
+    const user_id = req.userId;
     
     const postResult = await postDB.createPost(
-      QR,
-      userId,
+      type,
       title,
+      user_id,
+      weather,
+      location,
       JSON.stringify(body),
-      location
     );
 
     for (let i = 0; i < urls.length; i++) {
@@ -24,10 +25,10 @@ async function post(req, res) {
     return res.status(201).json({ data: result, message: "게시글이 작성되었습니다." });
   } catch (err) {
     console.log("err", err);
-    return res.status(500).json({ message: "서버 에러입니다." });
+    return res.status(500).json({ message: "create post server error" });
   }
 }
 
 module.exports = {
-  post,
+  create,
 }

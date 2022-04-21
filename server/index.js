@@ -1,5 +1,6 @@
 require("dotenv").config();
 const app = require("./app.js");
+const db = require("./models/index.js");
 
 const PORT = process.env.HTTP_PORT || 80;
 

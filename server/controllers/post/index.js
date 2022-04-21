@@ -1,6 +1,9 @@
+const { create } = require("./create");
+const { getPosts } = require("./getPosts");
+
 module.exports = {
-    create: require("./create"),
+    create,
+    getPosts,
     delete: require("./delete"),
     modify: require("./modify"),
-    allPost: require("./postInfo"),
 };

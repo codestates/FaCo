@@ -1,5 +1,5 @@
 const db = require('../models');
-const { post } = require('../models');
+const { post, user, url } = require('../models');
 
 async function postInfo(userId) {
   return post.findOne({
@@ -25,14 +25,17 @@ async function allPostInfo() {
   });
 }
 
-async function createPost(QR, userId, title, body, location) {
-  return post.create({
-    QR,
-    userId,
+async function createPost(type, title, user_id, weather, location, body) {
+  const postResult = await post.create({
+    type,
     title,
-    body,
+    user_id,
+    weather,
     location,
+    body,
   });
+
+  return postResult;
 }
 
 async function deletePost(postId) {
@@ -54,6 +57,35 @@ async function modifyPost(title, body, location, postId) {
   }
 }
 
+async function getPostsByType(type) {
+  const postResult = await post.findAll({
+    where: {
+      type: type,
+    }, 
+    attributes: {
+      exclude: ['updatedAt']
+    },
+    include: [
+      {
+        model: user,
+        attributes: ['name'],
+      }
+    ]
+  });
+
+  for (let i = 0; i < postResult.length; i++) {
+    const result = await url.findAll({
+      where: {
+        post_id: postResult[i].id,
+      },
+      attributes: ['name', 'url'],
+    });
+    postResult[i].dataValues.img = result;
+  }
+  
+  return postResult;
+}
+
 module.exports = {
   postInfo,
   findPostById,
@@ -61,4 +93,5 @@ module.exports = {
   createPost,
   deletePost,
   modifyPost,
+  getPostsByType,
 };

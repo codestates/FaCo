@@ -1,5 +1,4 @@
-const { url } = require('../models');
-const { post } = require('../models');
+const { url, post, user } = require('../models');
 
 async function findUrlById(postId) {
   return url.findAll({
@@ -19,6 +18,7 @@ async function createUrl(urlLink, postId) {
     name: urlLink.name,
     post_id: postId,
   });
+  
   return result;
 }
 
@@ -44,7 +44,6 @@ async function findByPostId(postId) {
     ],
   });
 
-  console.log(result)
   return result;
 }
 
