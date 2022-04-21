@@ -64,7 +64,7 @@ function PostEditor () {
   );
 
   function handleSubmitBtnClick() {
-    console.log(images)
+    // console.log(images)
     if (inputTitle === '') {
       return setIsTitleEmpty(true);
     }
@@ -104,16 +104,15 @@ function PostEditor () {
     }
 
     const postInfo = {
-      postInfo: { 
-        QR: boardType,
-        title: inputTitle,
-        body: delta,
-        location: userState.location,
-        urls: images
-      }
+      type: boardType,
+      title: inputTitle,
+      weather: '비',
+      location: '부산',
+      body: delta,
+      urls: images,
     };
 
-    axios.post(`${process.env.REACT_APP_API_URL}/post/post`, postInfo, {
+    axios.post(`${process.env.REACT_APP_API_URL}/post/create`, postInfo, {
       headers: {
         Authorization: `Bearer ${userState.accessToken}`,
           "Content-Type": "application/json",

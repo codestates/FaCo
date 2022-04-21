@@ -23,11 +23,12 @@ function RBoard() {
   const [isPostClicked, setIspostClicked] = useState(false);
 
   useEffect(() => {
-    async function callback() {
-      //axios.get()
-    }
-    searchHandler(state)}
-  , []);
+    axios.get(`${process.env.REACT_APP_API_URL}/post/r`).then(res => {
+      console.log(res);
+      searchHandler(res.data.data);
+      
+    }).catch(err => console.log(err));
+  }, []);
 
   function pageNumberBtnClick(go: number): void {
     setStart(go - postCount);
