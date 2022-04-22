@@ -75,7 +75,8 @@ function PostEditor () {
 
     const delta: any = quill?.getContents().ops;
     const updateState = state.slice();
-      
+    
+    /*
     if (locationState.post === undefined) {
       console.log('신규')
       updateState.unshift({
@@ -102,6 +103,7 @@ function PostEditor () {
         img: images
       }
     }
+    */
 
     const postInfo = {
       type: boardType,
@@ -111,7 +113,6 @@ function PostEditor () {
       body: delta,
       urls: images,
     };
-
     axios.post(`${process.env.REACT_APP_API_URL}/post/create`, postInfo, {
       headers: {
         Authorization: `Bearer ${userState.accessToken}`,
@@ -121,17 +122,20 @@ function PostEditor () {
     })
     .then(res => {
       console.log(res);
+
+      nav(`/${boardType}Board`);
     })
     .catch(err => console.log(err.response.data.message));
     
     // 서버 요청 부분
+    /*
     if (boardType === 'r') {
       dispatch(rBoardLts(updateState));
     } else {
       dispatch(qBoardLts(updateState));
     }
+    */
     
-    nav(`/${boardType}Board`);
   }
 
   function inputTitleChange(e: React.ChangeEvent<HTMLInputElement> ) {

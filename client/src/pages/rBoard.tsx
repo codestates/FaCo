@@ -14,7 +14,7 @@ import axios from 'axios';
 function RBoard() {
   const state = useSelector((state: RootState) => state.postsReducer.rLts);
   const popular = state.slice().sort((a, b) => a.like > b.like ? -1 : 1).slice(0, 3);
-  const [lts, setLts] = useState(state);
+  const [lts, setLts] = useState<PostType[]>([]);
 
   const postCount = 6; // 페이지당 보여줄 개수
   const [start, setStart] = useState(0);
@@ -49,8 +49,12 @@ function RBoard() {
     }
   }
   
+  function test() {
+    console.log(lts)
+  }
   return (
     <div>
+      <button onClick={test}>test</button>
       <div className='rboard-header'>
         <div className='rboard-title'>추천 게시판</div>
         <SearchBar searchHandler={searchHandler} pageNumberBtnClick={pageNumberBtnClick} boardType={'rLts'} postCount={postCount} />
@@ -58,13 +62,20 @@ function RBoard() {
       <div className='rboard-top'>
         <div className='rboard-subtitle'>인기 TOP3</div>
         <div className='rboard-container'>
-          {popular.map((post, idx) => <RPost key={post.id} post={post} postClickHandler={postClickHandler} />)}
+          {lts.sort((a, b) => a.like > b.like ? -1 : 1)
+            .slice(0, 3)
+            .map((post, idx) => (
+              <RPost key={post.id} post={post} postClickHandler={postClickHandler} />)
+            )
+          }
         </div>
       </div>
       <div className='rboard-recent'>
         <div className='rboard-subtitle'>최근 게시글</div>
         <div className='rboard-container'>
-          {lts.slice(start, end).map((post, idx) => <RPost key={post.id} post={post} postClickHandler={postClickHandler} />)}
+          {lts.slice(start, end).map(el => (
+            <RPost key={el.id} post={el} postClickHandler={postClickHandler}></RPost>)
+          )}
         </div>
       </div>
 

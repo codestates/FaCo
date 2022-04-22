@@ -13,7 +13,7 @@ import axios from 'axios';
 function QBoard() {
   const state = useSelector((state: RootState) => state.postsReducer.qLts);
   const dispatch = useDispatch();
-  const [lts, setLts] = useState(state);
+  const [lts, setLts] = useState<PostType[]>([]);
   const postCount = 10; // 페이지당 보여줄 개수
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(postCount);
@@ -64,7 +64,9 @@ function QBoard() {
           </tr>
         </thead>
         <tbody className='qboard-tbody'>
-          {lts.slice(start, end).map(post => <QPost key={post.id} post={post} postClickHandler={postClickHandler} />)}
+          {lts.slice(start, end).map(post => (
+            <QPost key={post.id} post={post} postClickHandler={postClickHandler} />
+          ))}
         </tbody>
       </table>
       </div>
