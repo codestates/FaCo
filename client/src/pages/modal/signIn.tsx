@@ -72,6 +72,7 @@ function SignIn({isSignInClose, isLogInCancle}:MyProps) {
         const data = response.data.data
         console.log(data)
         const userInfos = Object.assign({},stateUserInfo)
+        userInfos.userInfo.id = data.userId
         userInfos.userInfo.name = data.name
         userInfos.userInfo.email = data.email
         userInfos.userInfo.phone = data.phone
