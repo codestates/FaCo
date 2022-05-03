@@ -20,7 +20,7 @@ const axios = require('axios').default;
 function Menu() {
 	const dispatch = useDispatch();
   
-        const navigate = useNavigate();
+	const navigate = useNavigate();
 	// const path = `${process.env.REACT_APP_API_URL}/user/signout`;
 	const stateUserInfo = useSelector((state: RootState) => state.userInfoReducer);
 
@@ -43,8 +43,8 @@ function Menu() {
 		setIsSignIn(true)
 	}
 	function handleSignOutBtnClick () {
-		
 		const userInfos = Object.assign({},stateUserInfo)
+		userInfos.userInfo.id = ''
 		userInfos.userInfo.name = ''
 		userInfos.userInfo.phone = ''
 		userInfos.userInfo.email = ''

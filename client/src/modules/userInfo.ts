@@ -3,6 +3,7 @@ const USER_INFO = 'userInfo/USER_INFO' as const;
 
 
 export type userInfoType = {
+    id: string,
     name: string,
     phone: string,
     email: string,
@@ -31,6 +32,7 @@ type UserInfoState = {
 
 const initialState: UserInfoState = {
   userInfo: {
+    id: '',
     name: '',
     phone: '',
     email: '',
